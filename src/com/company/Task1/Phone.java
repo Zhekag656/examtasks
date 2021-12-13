@@ -1,4 +1,4 @@
-package com.company;
+package com.company.Task1;
 
 import java.util.Objects;
 
@@ -8,10 +8,10 @@ public class Phone implements Comparable<Phone>{
     private int price;
 
     @Override
-    public String toString() { return "{" +
+    public String toString() { return "Phone{" +
             "name='" + name + '\'' +
             ", company =" + company +
-            ", price ='" + price + "$" + '\'' +
+            ", price ='" + price +
             '}'; }
 
     @Override
@@ -19,7 +19,8 @@ public class Phone implements Comparable<Phone>{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Phone phone = (Phone) o;
-        return price == phone.price && Objects.equals(name, phone.name) && Objects.equals(company, phone.company);
+        return price == phone.price &&
+                Objects.equals(name, phone.name);
     }
 
     @Override
@@ -44,13 +45,5 @@ public class Phone implements Comparable<Phone>{
     }
 
     @Override
-    public int compareTo(Phone o) {
-        int result = this.name.compareTo(o.name);
-
-        if(result == 0){
-            result = Integer.compare(this.price, o.price);
-        }
-
-        return result;
-    }
+    public int compareTo(Phone o) {return name.compareTo(o.getName()) == 0 ? String.valueOf(price).compareTo(String.valueOf(o.getPrice())): 1;}
 }
